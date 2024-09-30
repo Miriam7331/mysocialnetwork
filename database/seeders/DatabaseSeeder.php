@@ -19,13 +19,14 @@ class DatabaseSeeder extends Seeder
         // User::factory(10)->create();
 
         DB::delete('delete from community_links');
-        CommunityLink::factory(50)->create(); 
-        
+        CommunityLink::factory(50)->create();
 
-
+        // Borramos este usuarios porque si no lo está creando contantemente desde adentro y la idea es que los cree desde afuera
+        /*
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+        */
     }
 }
