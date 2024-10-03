@@ -11,6 +11,7 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable;
 
+
     /**
      * The attributes that are mass assignable.
      *
@@ -43,5 +44,10 @@ class User extends Authenticatable implements MustVerifyEmail
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    //muestra cuantos links ha creado cada usuario
+    public function myLinks(){
+        return $this->hasMany(CommunityLink::class);
     }
 }
