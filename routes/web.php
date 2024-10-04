@@ -9,6 +9,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::post('/dashboard', [CommunityLinkController::class, 'store']);
+
+Route::resource('community-links', CommunityLinkController::class);
 
 Route::get('/dashboard', [CommunityLinkController::class, 'index'])
 ->middleware(['auth', 'verified'])
