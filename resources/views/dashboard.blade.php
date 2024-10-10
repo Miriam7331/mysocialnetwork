@@ -28,7 +28,8 @@
 
                     <!-- Contenedor para el componente (1/3) -->
                     <div class="col-span-1">
-                        <x-community-add-link />
+                        <!-- <x-community-add-link /> -->
+                        <x-community-add-link :channels="$channels" />
                     </div>
                 </div>
             </div>
