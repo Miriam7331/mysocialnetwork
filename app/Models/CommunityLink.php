@@ -9,7 +9,7 @@ class CommunityLink extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'user_id',
+        // 'user_id',
         'channel_id',
         'title',
         'link',

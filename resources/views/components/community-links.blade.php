@@ -30,7 +30,7 @@
 </div>
 
 <style>
-    .community-links {
+    /* .community-links {
         border: 1px solid #ddd;
         padding: 10px;
         border-radius: 5px;
@@ -48,5 +48,5 @@
 
     .community-links li {
         margin-bottom: 8px;
-    }
+    } */
 </style>
