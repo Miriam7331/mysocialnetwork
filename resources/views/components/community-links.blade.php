@@ -21,32 +21,20 @@
                 </form>
             </li>
         @empty
-            <li>No links available.</li>
+            {{-- <li>No links available.</li> --}}
         @endforelse
+        @if ($links->isEmpty())
+            <p>No approved contributions yet.</p>
+        @else
+            @foreach ($links as $link)
+                {{-- <p>{{ $link->title }}</p> --}}
+                <!-- Muestra más detalles del link aquí -->
+            @endforeach
+        @endif
+
+
     </ul>
 
     {{-- Pagination --}}
     {{ $links->links() }}
 </div>
-
-<style>
-    /* .community-links {
-        border: 1px solid #ddd;
-        padding: 10px;
-        border-radius: 5px;
-        margin-top: 20px;
-    }
-
-    .community-links h2 {
-        margin-bottom: 10px;
-    }
-
-    .community-links ul {
-        list-style-type: none;
-        padding: 0;
-    }
-
-    .community-links li {
-        margin-bottom: 8px;
-    } */
-</style>
