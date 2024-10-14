@@ -38,6 +38,8 @@ class CommunityLinkController extends Controller
             'title' => 'required|max:255',
             'link' => 'required|unique:community_links|url|max:255',
             'channel_id' => 'required|exists:channels,id',
+            ],[
+                'Channel_id.required' => 'You must select an option',
             ]);
             
             $link = new CommunityLink($data);

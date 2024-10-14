@@ -14,7 +14,7 @@ class CommunityLink extends Model
         'title',
         'link',
     ];
-    public function creator() //si en vez de creator uso user no es necesario usar user_id (que es la clave foránea)
+    public function creator() //si en vez de creator uso user no es necesario usar user_id (que es la clave foránea). Como lo que se hizo en el canal
     {
         return $this->belongsTo(User::class, 'user_id');
     }
