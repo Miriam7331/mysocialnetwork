@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\CommunityLink;
 use App\Models\Channel;
-use Illuminate\Http\Request;
+use App\Http\Requests\CommunityLinkForm;
 use Illuminate\Support\Facades\Auth;
 
 class CommunityLinkController extends Controller
@@ -17,7 +17,7 @@ class CommunityLinkController extends Controller
         $links = CommunityLink::where('approved', 1)->paginate(25);
         $channels = Channel::orderBy('title', 'asc')->get();
         return view('dashboard', compact('links', 'channels'));
-       // return view('dashboard');
+        // return view('dashboard');
 
     }
 
@@ -32,31 +32,21 @@ class CommunityLinkController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(CommunityLinkForm $request)
     {
-        $data = $request->validate([
-            'title' => 'required|max:255',
-            'link' => 'required|unique:community_links|url|max:255',
-            'channel_id' => 'required|exists:channels,id',
-            ],[
-                'Channel_id.required' => 'You must select an option',
-            ]);
-            
-            $link = new CommunityLink($data);
-            // Si uso CommunityLink::create($data) tengo que declarar user_id y channel_id como $fillable
-            $link->user_id = Auth::id();
-            $link->approved = Auth::user()->trusted ?? false;
-           // $link->channel_id = $request->channel_id;;
-            $link->save();
-            return back();
-            
-        // $request->merge([
-        // 'user_id' => Auth::id(),
-        // 'channel_id' => 1
-        // ]);
-        // CommunityLink::create($request->all());
-        // return back();
+        $data = $request->validate();
+
+        $link = new CommunityLink($data);
+        $link->user_id = Auth::id();
+        $link->approved = Auth::user()->trusted ?? false;
+        $link->save();
+
+        if ($link->approved) {
+            return back()->with('success', 'El link se ha guardado correctamente.');
+        } else {
+            return back()->with('notice', 'Tu link está pendiente de aprobación.');
         }
+    }
 
     /**
      * Display the specified resource.
@@ -77,7 +67,7 @@ class CommunityLinkController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CommunityLink $communityLink)
+    public function update(CommunityLinkForm  $request, CommunityLink $communityLink)
     {
         //
     }
