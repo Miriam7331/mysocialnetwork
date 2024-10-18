@@ -24,7 +24,7 @@ class CommunityLinkController extends Controller
      */
     public function create()
     {
-        // Aquí podrías retornar una vista para crear un nuevo enlace.
+
     }
 
     /**
@@ -39,7 +39,6 @@ class CommunityLinkController extends Controller
         $link->approved = Auth::user()->trusted ?? false;
         $link->save();
 
-        // Agregar mensaje flash usando with
         if ($link->approved) {
             return redirect('/dashboard')->with('success', 'El link ha sido aprobado automáticamente.');
         } else {
@@ -52,7 +51,7 @@ class CommunityLinkController extends Controller
      */
     public function show(CommunityLink $communityLink)
     {
-        // Aquí podrías retornar una vista para mostrar un enlace específico.
+
     }
 
     /**
@@ -60,7 +59,7 @@ class CommunityLinkController extends Controller
      */
     public function edit(CommunityLink $communityLink)
     {
-        // Aquí podrías retornar una vista para editar el enlace.
+
     }
 
     /**
@@ -68,7 +67,7 @@ class CommunityLinkController extends Controller
      */
     public function update(CommunityLinkForm  $request, CommunityLink $communityLink)
     {
-        // Aquí iría la lógica para actualizar el enlace.
+        
     }
 
     /**
@@ -76,6 +75,6 @@ class CommunityLinkController extends Controller
      */
     public function destroy(CommunityLink $communityLink)
     {
-        // Aquí iría la lógica para eliminar el enlace.
+    
     }
 }
