@@ -9,6 +9,17 @@ use Illuminate\Support\Facades\Auth;
 
 class CommunityLinkController extends Controller
 {
+
+    public function myLinks()
+    {
+        $links = CommunityLink::where('user_id', Auth::id())->paginate(10); 
+        return view('mylinks', compact('links'));
+    }
+
+
+
+
+
     /**
      * Display a listing of the resource.
      */

@@ -44,7 +44,7 @@
         <!-- Logo in the center -->
         <div class="flex justify-center items-center">
             <img src="{{ asset('images/logo_community_links.png') }}" alt="Logo"
-                 class="w-16 h-auto sm:w-24 md:w-32 lg:w-40">
+                class="w-16 h-auto sm:w-24 md:w-32 lg:w-40">
         </div>
     </header>
 
