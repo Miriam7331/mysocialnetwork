@@ -8,15 +8,34 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+
+                {{-- 
+                @if (session('success'))
+                <div class="p-4 mb-4 text-sm text-white bg-green-500 rounded-lg" role="alert">
+                    {{ session('success') }}
+                </div>
+            @endif
+            
+            @if (session('notice'))
+                <div class="p-4 mb-4 text-sm text-white bg-blue-500 rounded-lg" role="alert">
+                    {{ session('notice') }}
+                </div>
+            @endif
+            --}}
+
+                <x-flash-message />
+
+
                 <div class="grid grid-cols-3 gap-4 p-6">
-                    
-                    <!-- Contenedor para los enlaces (2/3) -->
+
+
+
                     <div class="col-span-2 text-gray-900 dark:text-gray-100">
-                        {{ __("Here you will see the Community Links!") }}
+                        {{ __('Here you will see the Community Links!') }}
 
                         <x-community-links :links="$links" />
 
-                        <!-- <ul>
+                        {{-- <ul>
                             @foreach ($links as $link)
                             <li>
                                 {{$link->title}}
@@ -24,12 +43,12 @@
                             </li>
                             @endforeach
                         </ul>
-                        {{$links->links()}} -->
+                        {{$links->links()}}  --}}
                     </div>
 
-                    <!-- Contenedor para el componente (1/3) -->
+
                     <div class="col-span-1">
-                    {{--  <!-- <x-community-add-link /> -->  --}}
+
                         <x-community-add-link :channels="$channels" />
                     </div>
                 </div>

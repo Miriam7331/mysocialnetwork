@@ -17,8 +17,6 @@ class CommunityLinkController extends Controller
         $links = CommunityLink::where('approved', 1)->paginate(25);
         $channels = Channel::orderBy('title', 'asc')->get();
         return view('dashboard', compact('links', 'channels'));
-        // return view('dashboard');
-
     }
 
     /**
@@ -26,7 +24,7 @@ class CommunityLinkController extends Controller
      */
     public function create()
     {
-        //
+        // Aquí podrías retornar una vista para crear un nuevo enlace.
     }
 
     /**
@@ -34,17 +32,18 @@ class CommunityLinkController extends Controller
      */
     public function store(CommunityLinkForm $request)
     {
-        $data = $request->validate();
+        $data = $request->validated();
 
         $link = new CommunityLink($data);
         $link->user_id = Auth::id();
         $link->approved = Auth::user()->trusted ?? false;
         $link->save();
 
+        // Agregar mensaje flash usando with
         if ($link->approved) {
-            return back()->with('success', 'El link se ha guardado correctamente.');
+            return redirect('/dashboard')->with('success', 'El link ha sido aprobado automáticamente.');
         } else {
-            return back()->with('notice', 'Tu link está pendiente de aprobación.');
+            return redirect('/dashboard')->with('notice', 'Tu link está pendiente de aprobación.');
         }
     }
 
@@ -53,7 +52,7 @@ class CommunityLinkController extends Controller
      */
     public function show(CommunityLink $communityLink)
     {
-        //
+        // Aquí podrías retornar una vista para mostrar un enlace específico.
     }
 
     /**
@@ -61,7 +60,7 @@ class CommunityLinkController extends Controller
      */
     public function edit(CommunityLink $communityLink)
     {
-        //
+        // Aquí podrías retornar una vista para editar el enlace.
     }
 
     /**
@@ -69,7 +68,7 @@ class CommunityLinkController extends Controller
      */
     public function update(CommunityLinkForm  $request, CommunityLink $communityLink)
     {
-        //
+        // Aquí iría la lógica para actualizar el enlace.
     }
 
     /**
@@ -77,6 +76,6 @@ class CommunityLinkController extends Controller
      */
     public function destroy(CommunityLink $communityLink)
     {
-        //
+        // Aquí iría la lógica para eliminar el enlace.
     }
 }

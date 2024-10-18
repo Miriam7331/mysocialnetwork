@@ -8,9 +8,9 @@ use Illuminate\View\Component;
 
 class FlashMessage extends Component
 {
+
     public $success;
     public $notice;
-
     /**
      * Create a new component instance.
      */

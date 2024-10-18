@@ -1,13 +1,14 @@
 <div>
-    @if($success)
-        <div class="bg-blue-500 text-white p-4 mb-4">
-            {{ $success }}
-        </div>
-    @endif
+    @if ($success)
+    <div class="p-4 mb-4 text-sm text-white bg-green-500 rounded-lg" role="alert">
+        {{ $success }}
+    </div>
+@endif
 
-    @if($notice)
-        <div class="bg-green-500 text-white p-4 mb-4">
-            {{ $notice }}
-        </div>
-    @endif
+@if ($notice)
+    <div class="p-4 mb-4 text-sm text-white bg-blue-500 rounded-lg" role="alert">
+        {{ $notice }}
+    </div>
+@endif
+
 </div>
