@@ -25,23 +25,25 @@ class CommunityLinkController extends Controller
      */
     public function index(Channel $channel = null)
     {
-       // dd($channel);
+        // dd($channel);
         if ($channel) {
             $links = $channel->communityLinks()
-            ->where('approved', true)
-            ->latest('updated_at')
-            ->paginate(10);
+                ->where('approved', true)
+                ->withCount('users')
+                ->latest('updated_at')
+                ->paginate(10);
         } else {
 
             $links = CommunityLink::where('approved', true)
+                ->withCount('users')
                 ->latest('updated_at')
                 ->paginate(10);
         }
-    
+
         $channels = Channel::orderBy('title', 'asc')->get();
         return view('dashboard', compact('links', 'channels'));
     }
-    
+
     /**
      * Show the form for creating a new resource.
      */

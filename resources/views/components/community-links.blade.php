@@ -8,6 +8,9 @@
                 <a href="{{ $link->link }}" target="_blank" rel="noopener noreferrer" class="flex-grow text-white-500">
                     {{ $link->title }}
                 </a>
+                <span class="ml-2 text-white text-sm">
+                    Votos: {{ $link->users_count }} <!-- Aquí se muestra el conteo -->
+                </span>
                 <form action="{{ route('community-links.destroy', $link) }}" method="POST" style="display:inline;">
                     <a href="/dashboard/{{ $link->channel->slug }}" class="inline-block ml-2">
                         <span class="px-2 py-1 text-white text-sm font-semibold rounded"
