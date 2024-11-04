@@ -15,9 +15,14 @@ class CommunityLinkUser extends Model
     public function toggle()
     {
         
-        $vote = $this->where('user_id', Auth::id())
-            ->where('community_link_id', $this->community_link_id)
-            ->first();
+        // $vote = $this->where('user_id', Auth::id())
+        //     ->where('community_link_id', $this->community_link_id)
+        //     ->first();
+
+            $vote = $this->firstOrNew([
+                'user_id' => Auth::id(),
+                'community_link_id' => $this->community_link_id,
+            ]);
 
         
         if ($vote) {
