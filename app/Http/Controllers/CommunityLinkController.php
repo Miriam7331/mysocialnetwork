@@ -6,6 +6,7 @@ use App\Models\CommunityLink;
 use App\Models\Channel;
 use App\Http\Requests\CommunityLinkForm;
 use Illuminate\Support\Facades\Auth;
+use App\Queries\CommunityLinkQuery;
 
 class CommunityLinkController extends Controller
 {
@@ -25,24 +26,30 @@ class CommunityLinkController extends Controller
      */
     public function index(Channel $channel = null)
     {
-        // dd($channel);
+        $query = new CommunityLinkQuery();
+    
+        // Determina qué enlaces recuperar según el canal y el filtro de popularidad o recientes
         if ($channel) {
-            $links = $channel->communityLinks()
-                ->where('approved', true)
-                ->withCount('users')
-                ->latest('updated_at')
-                ->paginate(10);
+            if (request()->exists('popular')) {
+                $links = $query->getMostPopularByChannel($channel);
+            } else {
+                $links = $query->getByChannel($channel);
+            }
+        } elseif (request()->exists('popular')) {
+            $links = $query->getMostPopular();
         } else {
-
-            $links = CommunityLink::where('approved', true)
-                ->withCount('users')
-                ->latest('updated_at')
-                ->paginate(10);
+            $links = $query->getAll();
         }
-
+    
+        // Obtiene todos los canales ordenados
         $channels = Channel::orderBy('title', 'asc')->get();
+    
         return view('dashboard', compact('links', 'channels'));
     }
+    
+    
+
+
 
     /**
      * Show the form for creating a new resource.

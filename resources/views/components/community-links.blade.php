@@ -35,5 +35,5 @@
     </ul>
 
     {{-- Pagination --}}
-    {{ $links->links() }}
+    {{ $links->appends($_GET)->links() }}
 </div>
