@@ -27,27 +27,37 @@ class CommunityLinkController extends Controller
     public function index(Channel $channel = null)
     {
         $query = new CommunityLinkQuery();
-    
-        // Determina qué enlaces recuperar según el canal y el filtro de popularidad o recientes
-        if ($channel) {
-            if (request()->exists('popular')) {
-                $links = $query->getMostPopularByChannel($channel);
-            } else {
-                $links = $query->getByChannel($channel);
-            }
-        } elseif (request()->exists('popular')) {
-            $links = $query->getMostPopular();
+        $term = request()->get('query');
+
+
+        if ($term) {
+            $links = $query->searchByTerm($term);
+            // $links = CommunityLink::where(function ($query) use ($term) {
+            //     $query->where('title', 'like', '%' . $term . '%')
+            //         ->orWhere('link', 'like', '%' . $term . '%');
+            // })->paginate(10);
         } else {
-            $links = $query->getAll();
+            // Determina qué enlaces recuperar según el canal y el filtro de popularidad o recientes
+            if ($channel) {
+                if (request()->exists('popular')) {
+                    $links = $query->getMostPopularByChannel($channel);
+                } else {
+                    $links = $query->getByChannel($channel);
+                }
+            } elseif (request()->exists('popular')) {
+                $links = $query->getMostPopular();
+            } else {
+                $links = $query->getAll();
+            }
         }
-    
+
         // Obtiene todos los canales ordenados
         $channels = Channel::orderBy('title', 'asc')->get();
-    
+
         return view('dashboard', compact('links', 'channels'));
     }
-    
-    
+
+
 
 
 

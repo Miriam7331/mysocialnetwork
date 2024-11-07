@@ -1,3 +1,5 @@
+{{-- ESTE ES EL FORMULARIO DE LA DERECHA EN EL DASHBOARD --}}
+
 <div class="md:col-span-1 bg-gray-800 p-6 rounded-lg shadow-md border border-gray-600 self-start">
     <h3 class="text-xl font-semibold mb-4 text-white">Contribute a link</h3>
 

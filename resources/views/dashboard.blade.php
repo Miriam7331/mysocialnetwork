@@ -29,6 +29,13 @@
                     </ul>
                 </div>
 
+                <!-- Mensaje de búsqueda -->
+                @if (request()->get('query'))
+                    <div class="bg-gray-200 p-4 rounded-lg mb-4">
+                        <strong>Results for: "{{ request()->get('query') }}"</strong>
+                    </div>
+                @endif
+
                 <div class="grid grid-cols-3 gap-4 p-6">
                     <div class="col-span-2 text-gray-900 dark:text-gray-100">
                         {{ __('Here you will see the Community Links!') }}

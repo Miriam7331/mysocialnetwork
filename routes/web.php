@@ -50,4 +50,6 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 Route::post('/votes/{link}', [CommunityLinkUserController::class, 'store'])->middleware('auth', 'verified');
 
+Route::get('/community', [CommunityLinkController::class, 'index'])->name('community.index');
+
 require __DIR__.'/auth.php';

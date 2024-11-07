@@ -29,6 +29,28 @@
                 
             </div>
 
+
+            <!-- Search Form -->
+            <div class="flex items-center space-x-4">
+                <form action="{{ route('community.index') }}" method="GET" class="flex items-center space-x-2">
+                    <input 
+                        type="text" 
+                        name="query" 
+                        value="{{ request()->get('query') }}"
+                        placeholder="Search by title or URL" 
+                        class="border-gray-300 rounded-lg py-2 px-4 text-gray-700 dark:text-gray-300 dark:bg-gray-800 focus:ring-indigo-500 focus:border-indigo-500" 
+                    />
+                    <button 
+                        type="submit" 
+                        class="bg-blue-500 text-white py-2 px-4 rounded-lg"
+                    >
+                        Search
+                    </button>
+                </form>
+            </div>
+
+
+
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
