@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Link;
+use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\CommunityLinkController;
 use App\Http\Controllers\CommunityLinkUserController;
 
@@ -51,5 +52,10 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::post('/votes/{link}', [CommunityLinkUserController::class, 'store'])->middleware('auth', 'verified');
 
 Route::get('/community', [CommunityLinkController::class, 'index'])->name('community.index');
+
+// Route::get('/linkstorage', function(){
+//     Artisan::call('storage:link');
+// });
+
 
 require __DIR__.'/auth.php';

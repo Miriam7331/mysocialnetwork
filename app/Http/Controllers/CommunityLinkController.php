@@ -31,11 +31,11 @@ class CommunityLinkController extends Controller
 
 
         if ($term) {
-            $links = $query->searchByTerm($term);
-            // $links = CommunityLink::where(function ($query) use ($term) {
-            //     $query->where('title', 'like', '%' . $term . '%')
-            //         ->orWhere('link', 'like', '%' . $term . '%');
-            // })->paginate(10);
+            // $links = $query->searchByTerm($term);
+            $links = CommunityLink::where(function ($query) use ($term) {
+                $query->where('title', 'like', '%' . $term . '%')
+                    ->orWhere('link', 'like', '%' . $term . '%');
+            })->paginate(10);
         } else {
             // Determina qué enlaces recuperar según el canal y el filtro de popularidad o recientes
             if ($channel) {

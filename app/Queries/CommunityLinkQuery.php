@@ -35,15 +35,15 @@ class CommunityLinkQuery
         ->paginate(10);
     }
 
-    public function searchByTerm($term)
-    {
-        return CommunityLink::where('approved', true)
-            ->whereAny([
-                ['title', 'like', '%' . $term . '%'],
-                ['link', 'like', '%' . $term . '%']
-            ])
-            ->paginate(10);
-    }
+    // public function searchByTerm($term)
+    // {
+    //     return CommunityLink::where('approved', true)
+    //         ->whereAny([
+    //             ['title', 'like', '%' . $term . '%'],
+    //             ['link', 'like', '%' . $term . '%']
+    //         ])
+    //         ->paginate(10);
+    // }
 }
 
 
