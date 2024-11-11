@@ -44,6 +44,17 @@ class CommunityLinkQuery
     //         ])
     //         ->paginate(10);
     // }
+
+
+    // public function searchByTerm($term){
+    //     $links = CommunityLink::where('approved', true)
+    //     ->whereAny(['title', 'link'], 'like', '%' . $term . '%')
+    //     ->orderBy('create_at', 'desc')
+    //     ->paginate(10);
+
+    //     return $links;
+    // }
+
 }
 
 
