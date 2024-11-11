@@ -2,8 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Link;
-use Illuminate\Support\Facades\Artisan;
+// use App\Models\Link;
+// use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\CommunityLinkController;
 use App\Http\Controllers\CommunityLinkUserController;
 
@@ -14,15 +15,21 @@ Route::get('/', function () {
 
 Route::post('/dashboard', [CommunityLinkController::class, 'store']);
 
+// rutas para el crud
+Route::middleware(['auth', 'verified'])->group(function () {
+    Route::resource('users', UserController::class);
+});
+
+
 Route::resource('community-links', CommunityLinkController::class);
 
 Route::get('/dashboard', [CommunityLinkController::class, 'index'])
-->middleware(['auth', 'verified'])
-->name('dashboard');
+    ->middleware(['auth', 'verified'])
+    ->name('dashboard');
 
 
 
-Route::get('dashboard/{channel:slug}',[CommunityLinkController::class, 'index']);
+Route::get('dashboard/{channel:slug}', [CommunityLinkController::class, 'index']);
 
 /*
 Route::get('/dashboard', function () {
@@ -58,4 +65,12 @@ Route::get('/community', [CommunityLinkController::class, 'index'])->name('commu
 // });
 
 
-require __DIR__.'/auth.php';
+// Route::resource('users', UserController::class);
+
+
+
+
+
+
+
+require __DIR__ . '/auth.php';
