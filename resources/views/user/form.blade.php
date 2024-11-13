@@ -11,6 +11,12 @@
         <x-input-error class="mt-2" :messages="$errors->get('email')"/>
     </div>
     <div>
+        <x-input-label for="password" :value="__('Password')"/>
+        <x-text-input id="password" name="password" type="password" class="mt-1 block w-full" :value="old('password')" autocomplete="new-password" placeholder="Password"/>
+        <x-input-error class="mt-2" :messages="$errors->get('password')"/>
+    </div>
+    
+    <div>
         <x-input-label for="trusted" :value="__('Trusted')"/>
         <x-text-input id="trusted" name="trusted" type="text" class="mt-1 block w-full" :value="old('trusted', $user?->trusted)" autocomplete="trusted" placeholder="Trusted"/>
         <x-input-error class="mt-2" :messages="$errors->get('trusted')"/>
