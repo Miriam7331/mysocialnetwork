@@ -17,8 +17,10 @@ Route::post('/dashboard', [CommunityLinkController::class, 'store']);
 
 // rutas para el crud
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::resource('users', UserController::class);
+    Route::resource('users', UserController::class)->middleware('can:administrate,App\Models\User');
 });
+
+// Route::resource('users', UserController::class)->middleware('can:administrate,App\Models\User');
 
 
 Route::resource('community-links', CommunityLinkController::class);
@@ -66,10 +68,6 @@ Route::get('/community', [CommunityLinkController::class, 'index'])->name('commu
 
 
 // Route::resource('users', UserController::class);
-
-
-
-
 
 
 
