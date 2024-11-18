@@ -23,7 +23,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 // Route::resource('users', UserController::class)->middleware('can:administrate,App\Models\User');
 
 
-Route::resource('community-links', CommunityLinkController::class);
+// Route::resource('community-links', CommunityLinkController::class);
 
 Route::get('/dashboard', [CommunityLinkController::class, 'index'])
     ->middleware(['auth', 'verified'])
