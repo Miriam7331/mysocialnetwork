@@ -26,7 +26,14 @@
                         {{ __('My Links') }}
                     </x-nav-link>
                 </div>
-
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    @can('administrate')
+                    {{-- {{ dd(auth()->user()->can('administrate')) }} --}}
+                    <x-nav-link :href="route('users.index')" :active="request()->routeIs('users.*')">
+                        {{ __('CRUD') }}
+                    </x-nav-link>
+                @endcan
+                </div>
             </div>
 
 
