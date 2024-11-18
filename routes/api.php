@@ -9,5 +9,8 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 
-Route::apiResource('v1/communitylinks', CommunityLinkController::class);
+
+Route::apiResource('v1/communitylink', CommunityLinkController::class)
+->middleware(['verified', 'auth:sanctum']);
+
 
